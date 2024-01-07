@@ -1,0 +1,73 @@
+<html>
+ <head>
+    <title>Q1Translate</title>
+    <script type = "text/javascript" src = "jquery.js"></script>
+    <script type = "text/javascript" language = "javascript">
+        $(document).ready( 
+            function() {
+                let n = 1;
+                let location = 0; //0 for left, 1 for right
+                $("tr").each(
+                    function() {
+                        if (n % 2 == 0) 
+                            $(this).css("background-color", "grey");
+                        else
+                            $(this).css("background-color", "yellow");
+                        n += 1;
+                    }
+                )
+                $("#btn1").bind("click", function() {
+                    if (location == 0) {
+                        $("#translate-elem").css("left", "");
+                        $("#translate-elem").animate({right: '10px'}, 0);
+                        location = 1;
+                    }
+                    else {
+                        $("#translate-elem").css("right", "");
+                        $("#translate-elem").animate({left: '10px'}, 0);
+                        location = 0;
+                    }
+                })
+            }
+        );
+    </script>
+    <style type="text/css">
+        table, td {
+            border: 1px solid black;
+        }
+        td {
+            padding: 1rem;
+        }
+        #btn1 {
+            padding: 1rem;
+            margin: 1rem 0;
+            display: block;
+        }
+    </style>
+    </head>
+ <body>
+    <button id="btn1">
+        Translate
+    </button>
+    <div id="translate-elem" style="position: absolute;">
+        <table>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+        </table>
+        <img width="200px" src="https://th.bing.com/th/id/OIP.1d6tBbNiJTFQNEK_k0sSjQHaFj?rs=1&pid=ImgDetMain">
+    </div>
+ </body>
+</html>

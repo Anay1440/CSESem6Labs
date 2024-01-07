@@ -1,0 +1,49 @@
+<html>
+ <head>
+    <title>Q4Bill</title>
+    <script type = "text/javascript" src = "jquery.js"></script>
+    <script type = "text/javascript" language = "javascript">
+        $(document).ready(
+            function() {
+                $("#produce-bill-btn").bind("click", function() {
+                    let company = $("#company-dropdown").val();
+                    let items = [];
+                    if ($("#items-mobile-checkbox").is(':checked'))
+                        items.push("Mobile");
+                    if ($("#items-laptop-checkbox").is(':checked'))
+                        items.push("Laptop");
+                    let quantity = $("#quantity-inp").val();
+                    let bill = "Company: " + company + "\n";
+                    bill += "Items: " + items.join(", ") + "\n";
+                    bill += "Quantity: " + quantity + "\n";
+                    alert(bill);
+                })
+            }
+        );
+    </script>
+    <style type="text/css">
+        select {
+            display: block;
+            margin-bottom: 1rem;
+            width: 10rem;
+        }
+    </style>
+    </head>
+ <body>
+    <label for="company-dropdown">Choose a company:</label>
+    <select name="company-dropdown" id="company-dropdown">
+        <option value="HP">HP</option>
+        <option value="Nokia">Nokia</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Motorola">Motorola</option>
+        <option value="Apple">Apple</option>
+    </select>
+    <input type="checkbox" id="items-mobile-checkbox">
+    <label for="items-mobile-checkbox">Mobile</label><br>
+    <input type="checkbox" id="items-laptop-checkbox">
+    <label for="items-laptop-checkbox">Laptop</label><br>
+    <label for="quantity-inp">Enter quantity:</label><br>
+    <input type="text" id="quantity-inp"><br>
+    <button id="produce-bill-btn" style="margin-top: 1rem;">Produce Bill</button>
+ </body>
+</html>
