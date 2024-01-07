@@ -8,10 +8,12 @@
                 $("#produce-bill-btn").bind("click", function() {
                     let company = $("#company-dropdown").val();
                     let items = [];
-                    if ($("#items-mobile-checkbox").is(':checked'))
-                        items.push("Mobile");
-                    if ($("#items-laptop-checkbox").is(':checked'))
-                        items.push("Laptop");
+                    $("input[type=checkbox]").each(
+                        function() {
+                            if ($(this).is(':checked'))
+                                items.push($(this).val());
+                        }
+                    )
                     let quantity = $("#quantity-inp").val();
                     let bill = "Company: " + company + "\n";
                     bill += "Items: " + items.join(", ") + "\n";
@@ -38,9 +40,9 @@
         <option value="Motorola">Motorola</option>
         <option value="Apple">Apple</option>
     </select>
-    <input type="checkbox" id="items-mobile-checkbox">
+    <input value="Mobile" type="checkbox" id="items-mobile-checkbox">
     <label for="items-mobile-checkbox">Mobile</label><br>
-    <input type="checkbox" id="items-laptop-checkbox">
+    <input value="Laptop" type="checkbox" id="items-laptop-checkbox">
     <label for="items-laptop-checkbox">Laptop</label><br>
     <label for="quantity-inp">Enter quantity:</label><br>
     <input type="text" id="quantity-inp"><br>

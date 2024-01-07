@@ -1,0 +1,105 @@
+<html>
+ <head>
+    <title>Q2Calculator</title>
+    <script type = "text/javascript" src = "jquery.js"></script>
+    <script type = "text/javascript" language = "javascript">
+        $(document).ready( 
+            function() {
+                let val = 0, inputval = 0, operator = null, text = "";
+                let resBox = $("#resBox")
+                resBox.html(val);
+                $("input[type=button]").bind("click", function() {
+                    let buttonVal = $(this).val();
+                    if (buttonVal == 'C') {
+                        inputval = 0;
+                        resBox.html(inputval);
+                    }
+                    else if (buttonVal >= "0" && buttonVal <= "9") {
+                        inputval = inputval * 10 + parseInt(buttonVal);
+                        let t = text + inputval;
+                        resBox.html(t);
+                    }
+                    else if (buttonVal == '+' || buttonVal == '/' || buttonVal == '-' || buttonVal == '*') {
+                        operator = buttonVal;
+                        val = inputval;
+                        inputval = 0;
+                        text = val + buttonVal;
+                        resBox.html(text);
+                    }
+                    else { // =
+                        if (operator == '+')
+                            val = val + inputval;
+                        else if (operator == '-')
+                            val = val - inputval;
+                        else if (operator == '*')
+                            val = val * inputval;
+                        else
+                            val = Math.floor(val / inputval);
+                        let t = text + inputval + "=" + val;
+                        inputval = val;
+                        resBox.html(t);
+                        text = "";
+                    }
+                })
+            }
+        );
+    </script>
+    <style type="text/css">
+        table { 
+            border: 1px solid black; 
+            margin: 2rem; 
+        }
+        input[type="button"] { 
+            width: 100%;
+            padding: 1rem; 
+            background-color: black;
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+        }
+        input[type="button"]:hover {
+            background-color: gray;
+        }
+        #resBox { 
+            padding: 1rem; 
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 10rem;
+        } 
+    </style>
+    </head>
+ <body>
+    <table id="calcu"> 
+        <tr> 
+            <td colspan="3"> 
+                <div id="resBox"></div>
+            </td> 
+            <td><input type="button" value="C"></td> 
+        </tr> 
+  
+        <tr> 
+            <td><input type="button" value="1"></td> 
+            <td><input type="button" value="2"></td> 
+            <td><input type="button" value="3"></td> 
+            <td><input type="button" value="/"></td> 
+        </tr> 
+        <tr> 
+            <td><input type="button" value="4"></td> 
+            <td><input type="button" value="5"></td> 
+            <td><input type="button" value="6"></td> 
+            <td><input type="button" value="*"></td> 
+        </tr> 
+        <tr> 
+            <td><input type="button" value="7"></td> 
+            <td><input type="button" value="8"></td> 
+            <td><input type="button" value="9"></td> 
+            <td><input type="button" value="-"></td> 
+        </tr> 
+        <tr> 
+            <td colspan="2"><input type="button" value="0"></td> 
+            <td><input type="button" value="="></td> 
+            <td><input type="button" value="+"></td> 
+        </tr> 
+    </table> 
+ </body>
+</html>
