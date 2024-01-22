@@ -7,5 +7,5 @@ for i in range(r):
     for j in range(c):
         mat[i][j] = int(input(f"Enter a[{i}][{j}] "))
 print("Given matrix:\n", mat)
-print("Sum of columns: ", mat.sum(axis = 0))
-print("Sum of rows: ", mat.sum(axis = 1))
+mat = mat.T
+print("Transposed matrix:\n", mat)

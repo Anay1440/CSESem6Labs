@@ -23,11 +23,12 @@ arr = np.array([np.arange(0, 4), np.arange(5, 9), np.arange(10, 14)])
 arr = arr.reshape((2, 2, 3))
 print(arr)
 
-# Part d
+# Part f
 arr = np.array([np.arange(0, 4), np.arange(5, 9), np.arange(10, 14)])
 print(arr)
-print("Sum of columns: ", arr.sum(axis = 1))
-print("Columnwise max: ", arr.max(axis = 1))
-print("Columnwise min: ", arr.min(axis = 1))
-print("Row wise max: ", arr.max(axis = 0))
-print("Row wise min: ", arr.min(axis = 0))
+print("Maximum element: ", arr.max(), "\nMinimum element: ", arr.min())
+print("Sum of columns: ", arr.sum(axis = 0))
+print("Columnwise max: ", arr.max(axis = 0))
+print("Columnwise min: ", arr.min(axis = 0))
+print("Row wise max: ", arr.max(axis = 1))
+print("Row wise min: ", arr.min(axis = 1))
