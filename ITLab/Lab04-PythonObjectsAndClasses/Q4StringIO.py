@@ -6,7 +6,7 @@ class StringIO:
         self.str = input("Enter string ")
     
     def print_string(self):
-        print(self.str)
+        print(self.str.upper())
     
 if __name__ == "__main__":
     obj = StringIO()
