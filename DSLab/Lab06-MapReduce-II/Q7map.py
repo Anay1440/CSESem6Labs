@@ -7,9 +7,7 @@ with open('random_numbers.txt', 'w') as file:
 
 with open('random_numbers.txt', 'r') as file:
     for line in file:
-        num = line.strip()[:-1] # to remove the \n
-        if (num == ''):
-            continue
+        num = line.strip()
         if (int(num) % 2 == 0):
             print(f"Even\t{1}")
         else:
