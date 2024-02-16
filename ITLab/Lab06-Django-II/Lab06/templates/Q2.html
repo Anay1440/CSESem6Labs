@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4MagazineCover</title>
+    <link rel="stylesheet" href="{% static 'Lab06/scripts/bootstrap.min.css' %}">
+    <script src="{% static 'Lab06/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'Lab06/scripts/popper.min.js' %}"></script>
+    <script src="{% static 'Lab06/scripts/bootstrap.min.js' %}"></script>
+</head>
+<body class="container mt-5 bg-dark text-white">
+    Choose a background color:<br>
+    <select id="back-color" style="background-color: black; color: white;">
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+    </select><br>
+    Choose a font:<br>
+    <select id="fontchoice" style="background-color: black; color: white;">
+        <option value="arial">Arial</option>
+        <option value="verdana">Verdana</option>
+        <option value="impact">Impact</option>
+        <option value="'ms comic sans'">MS Comic Sans</option>
+    </select><br>
+    Specify a numeric font size:<br>
+    <input type="text" id="fontsizeinp" style="background-color: black; color: white;"><br>
+    Image:<br>
+    <select id="image_select" style="background-color: black; color: white;">
+        <option value="Sports">Sports</option>
+        <option value="Technology">Technology</option>
+    </select><br>
+    Enter the cover page text below:<br>
+    <textarea id="coverpage-text-input" rows="5" cols="30" style="background-color: black; color: white;"></textarea><br>
+    <button id="update-btn" style="margin-top: 1rem;">Update</button>
+    <div id="card" style="position: absolute; right: 0; top: 0; height: 30rem; width: 20rem; ">
+        <div id="card-text" style="height: 15rem; text-align: center; margin-top: 2rem;"></div>
+        <img id="default-img" style="width: 100%; margin-bottom: 3rem">
+    </div>
+    <script type = "text/javascript" language = "javascript">
+        const card = $("#card");
+        $("#update-btn").on("click", function() {
+            card.css("background-color", $("#back-color").val());
+            card.css("font-family", $("#fontchoice").val());
+            card.css("font-size", $("#fontsizeinp").val() + "px" )
+            if ($("#image_select").val() == "Sports")
+                $("#default-img").attr("src", "{% static 'Lab06/images/sports_bg.jpg' %}")
+            else
+                $("#default-img").attr("src", "{% static 'Lab06/images/technology_bg.jpg' %}")
+            $("#card-text").text($("#coverpage-text-input").val());
+        })
+    </script>
+</body>
+</html>

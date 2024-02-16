@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3Calculator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="container mt-5 bg-dark text-white">
+    <div class="card" style="background-color: black;">
+        <div class="card-header" style="background-color: rgb(80, 80, 80);">
+            Simple Calculator
+        </div>
+        <div class="card-body">
+            Enter first number:<input type="number" class="form-control bg-dark text-white" id="num1inp" required><br>
+            Enter second number:<input type="number" class="form-control bg-dark text-white" id="num2inp" required><br>
+            <div class="form-group">
+                Operation:
+                <select id="operationSelect" style="width: 3rem; background-color: black; color: white;">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+            </div>
+            <button id="calcButton" type="submit" class="btn btn-primary">Calculate</button>
+            <h3 class="mt-4">Result: <span id="result"></span></h3>
+        </div>
+    </div>
+
+    <script>
+        $("#calcButton").on("click", function() {
+            let inp1 = parseFloat($("#num1inp").val());
+            let inp2 = parseFloat($("#num2inp").val());
+            if (isNaN(inp1) || isNaN(inp2)) {
+                alert("Invalid input");
+                return;
+            }
+            let operator = $('#operationSelect').val();
+            if (operator == '+')
+                val = inp1 + inp2;
+            else if (operator == '-')
+                val = inp1 - inp2;
+            else if (operator == '*')
+                val = inp1 * inp2;
+            else
+                val = inp1 / inp2;
+            let t = inp1 + operator + inp2 + "=" + val;
+            $('#result').html(t);
+        })
+    </script>
+</body>
+</html>
