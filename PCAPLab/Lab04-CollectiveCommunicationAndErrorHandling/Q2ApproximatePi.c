@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
 
-    int rank, size, errcode, rectangleCount = 100000, leftLimit = -10, rightLimit = 10;
+    int rank, size, errcode, rectangleCount = 100000, leftLimit = 0, rightLimit = 1;
     double rectangle_width = (double) (rightLimit - leftLimit) / rectangleCount, ans;
 
     MPI_Init(&argc, &argv);

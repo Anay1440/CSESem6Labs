@@ -12,23 +12,7 @@ int main(int argc, char *argv[]) {
 
     MPI_Errhandler_set(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 
-    int * arr = (int *) malloc(size * sizeof(int));
-    if (rank == 0) {
-        for (int i = 0; i < size; i++) {
-            printf("Enter number ");
-            scanf("%d", &arr[i]);
-        }
-    }
-    errcode = MPI_Scatter(arr, 1, MPI_INT, &num, 1, MPI_INT, 0, MPI_COMM_WORLD);
-
-    if (errcode != MPI_SUCCESS) {
-        char errorString[50]; int len;
-        MPI_Error_string(errcode, errorString, &len);
-        printf("Error. %s\n", errorString);
-        MPI_Abort(MPI_COMM_WORLD, 1);
-    }
-
-    for (int i = 1; i <= num; i++)
+    for (int i = 1; i <= rank + 1; i++)
         fact = fact * i;
 
     errcode = MPI_Scan(&fact, &ans, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
@@ -41,7 +25,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (rank == size - 1) {
-        printf("Final sum: %d", ans);
+        printf("Final sum: %d\n", ans);
     }
     
     MPI_Finalize();
