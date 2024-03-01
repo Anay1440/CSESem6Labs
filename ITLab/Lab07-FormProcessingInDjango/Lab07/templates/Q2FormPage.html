@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2FormPage</title>
+</head>
+<body> 
+    <form name="form" action="{% url 'Q2FormSubmit' %}" method="POST">
+        {% csrf_token %}
+        <div style = "max-width:470px;"> 
+            <center> 
+                <input type = "text" style = "margin-left:20%;" placeholder = "Name" name = "name" />
+                <input type = "number" style = "margin-left:20%;" placeholder = "Roll number" name = "rno" />
+                <select name = "subject_select">
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                </select>
+            </center> 
+        </div> 
+        <center> 
+            <button style = "border:0px; background-color:#4285F4; margin-top:8%; height:35px; width:80%;margin-left:19%;" type = "submit"><strong>Submit</strong></button> 
+        </center> 
+        </div>
+    </form> 
+</body> 
+</html> 
