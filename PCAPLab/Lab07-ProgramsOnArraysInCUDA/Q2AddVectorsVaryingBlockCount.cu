@@ -32,10 +32,10 @@ int main(void) {
         a[i] = 1, b[i] = 2;
     }
 
-    int *d_a, *d_b, *d_c; // Device copies of vectors a, b, c
+    int *d_a, *d_b, *d_c; // Device copies of vectors
     int size = n * sizeof(int);
 
-    // Allocate space for device copies of a, b, c
+    // Allocate space for device copies
 
     cudaMalloc((void **)&d_a, size);
     cudaMalloc((void **)&d_b, size);
@@ -48,7 +48,6 @@ int main(void) {
 
     // Launch add() kernel on GPU
 
-    // Part a
     add<<<block_count, 256>>>(d_a, d_b, d_c);
 
     // Copy result back to host
