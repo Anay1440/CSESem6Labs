@@ -1,0 +1,17 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3</title>
+</head>
+<body>
+    How is the book ASP.NET with C# by Vipul Prakashan?
+    <form name="form" action="{% url 'Q3FormSubmit' %}" method="POST">
+        {% csrf_token %}
+        <input type="radio" name="vote" value="1"> Good {% if voted == True %} {{ votes.0 }} {% endif %} <br>
+        <input type="radio" name="vote" value="2"> Satisfactory {% if voted == True %} {{ votes.1 }} {% endif %} <br>
+        <input type="radio" name="vote" value="3"> Bad {% if voted == True %} {{ votes.2 }} {% endif %} <br>
+        <button type="submit">Submit</button> 
+    </form>
+</body>
+</html>
