@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import Q1Form, Q2Form, Q3Form
 
 # Create your views here.
@@ -68,7 +68,7 @@ def Q2Reset(request):
 
 def Q3(request):
     context = {'votes': [0, 0, 0], 'voted': False}
-    if request.session.has_key('votes'):
+    if 'votes' in request.session:
         context['votes'] = request.session['votes']
     return render(request, 'Q3.html', context)
 
@@ -79,23 +79,22 @@ def Q3FormSubmit(request):
         MyForm = Q3Form(request.POST)
     if MyForm.is_valid():
         vote = int(MyForm.cleaned_data['vote']) - 1
-        if (request.session.has_key('votes')):
-            total_votes = 0
+        if 'votes' in request.session:
             request.session['votes'][vote] += 1
-            for i in request.session['votes']:
-                total_votes += i
-            for i in request.session['votes']:
-                context['votes'].append((i * 100 / total_votes))
         else:
-            l = [0, 0, 0]
-            l[vote] += 1
-            total_votes = 1
-            request.session['votes'] = l
-            for i in request.session['votes']:
-                context['votes'].append((i * 100 / total_votes))
-    else:
-        MyForm = Q3Form()
+            request.session['votes'] = [0, 0, 0]
+            request.session['votes'][vote] += 1
 
-    print(context)
+        request.session.modified = True
+            
+        total_votes = sum(request.session['votes'])
+        context['votes'] = [round((i * 100 / total_votes), 3) for i in request.session['votes']]
     
     return render(request, 'Q3.html', context)
+
+def Q3Reset(request):
+    try:
+        del request.session['votes']
+    except:
+        pass
+    return redirect('Q3')

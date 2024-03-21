@@ -14,4 +14,5 @@ urlpatterns = [
     path("Q2Reset", views.Q2Reset, name="Q2Reset"),
     path("Q3", views.Q3, name='Q3'),
     path("Q3Voted", views.Q3FormSubmit, name='Q3FormSubmit'),
+    path("Q3Reset", views.Q3Reset, name='Q3Reset'),
 ]
