@@ -3,9 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-__global__ void mat_manipulation(int * mat, int * res_mat) {
-    int cols = blockDim.y;
-
+__global__ void mat_manipulation(int * mat, int * res_mat, int cols) {
     int curr_row = threadIdx.x;
 
     for (int i = 0; i < cols; i++) {
@@ -58,7 +56,7 @@ int main() {
 
     cudaMemcpy(d_mat, mat, sizeof(int) * r1 * c1, cudaMemcpyHostToDevice);
 
-    mat_manipulation<<<1, dim3(r1, c1)>>>(d_mat, d_result);
+    mat_manipulation<<<1, r1>>>(d_mat, d_result, c1);
 
     result = (int *) malloc(sizeof(int) * r1 * c1);
     cudaMemcpy(result, d_result, sizeof(int) * r1 * c1, cudaMemcpyDeviceToHost);
