@@ -9,7 +9,7 @@ __global__ void mat_manipulation(int * mat, int * res_mat, int cols) {
     for (int i = 0; i < cols; i++) {
         int val = mat[curr_row * cols + i];
         for (int j = 0; j < curr_row; j++) {
-            val *= val;
+            val *= mat[curr_row * cols + i];
         }
         res_mat[curr_row * cols + i] = val;
     }
