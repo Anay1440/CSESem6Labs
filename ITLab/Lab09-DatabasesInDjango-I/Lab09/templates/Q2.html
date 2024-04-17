@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2</title>
+</head>
+<body> 
+    <html>
+<head>
+    <a href="/Q2WorksForm">Works Form </a><br>
+    <a href="/Q2LivesForm">Lives Form </a><br>
+
+    <form action="{% url 'Q2RetrieveFormSubmit' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br> 
+        <input type="submit" value="Submit" >
+    </form>
+    <h2>People working at the same company:</h2>
+    {% for person in people %} 
+    <p>{{ person.name }} living in {{ person.city }}</p><br>
+    {% endfor %}
+</body> 
+</html> 
+</body> 
+</html>
